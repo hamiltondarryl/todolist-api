@@ -28,14 +28,13 @@ export class TaskService {
                 },
             },
         });
-        return task;
-
+        return { message: 'Task created successfully' };
     }
 
     // Method to update a task
     async updateTask(taskDto: TaskDto, taskId: string) {
         const { contenu } = taskDto;
-        
+
         const team = await this.prismaService.task.findUnique({
             where: { id: taskId },
         });
