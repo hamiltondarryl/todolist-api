@@ -11,7 +11,7 @@ export class TaskController {
 
     // Method to create a new task 
     @UseGuards(JwtAuthGuard)
-    @HttpCode(200)
+    @HttpCode(201)
     @ApiOperation({ summary: "Création d'une tache " })
     @Post()
     async createTask(@Body() taskDto: TaskDto, @Req() req) {
