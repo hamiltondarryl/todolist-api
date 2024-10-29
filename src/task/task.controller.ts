@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards /jwt.guard';
@@ -11,6 +11,7 @@ export class TaskController {
 
     // Method to create a new task 
     @UseGuards(JwtAuthGuard)
+    @HttpCode(200)
     @Post()
     async createTask(@Body() taskDto: TaskDto, @Req() req) {
         const userId = req.user.id;
@@ -19,6 +20,7 @@ export class TaskController {
 
     // Method to update a task
     @UseGuards(JwtAuthGuard)
+    @HttpCode(200)
     @Put(':id')
     async updateTask(@Param('id') id: string, @Body() taskDto: TaskDto, @Req() req) {
         const userId = req.user.id;
@@ -27,6 +29,7 @@ export class TaskController {
 
     // Method to get all tasks
     @UseGuards(JwtAuthGuard)
+    @HttpCode(200)
     @Get()
     async getTasks(@Req() req) {
         const userId = req.user.id;
@@ -35,6 +38,7 @@ export class TaskController {
 
     // Method to delete a task
     @UseGuards(JwtAuthGuard)
+    @HttpCode(200)
     @Delete(':id')
     async deleteTask(@Param('id') id: string, @Req() req) {
         return await this.taskService.deleteTask(id);
