@@ -35,11 +35,11 @@ export class TaskService {
     async updateTask(taskDto: TaskDto, taskId: string) {
         const { contenu } = taskDto;
 
-        const team = await this.prismaService.task.findUnique({
+        const task = await this.prismaService.task.findUnique({
             where: { id: taskId },
         });
 
-        if (!team) {
+        if (!task) {
             throw new NotFoundException(`Team with not found.`);
         }
 
