@@ -40,7 +40,7 @@ export class TaskService {
         });
 
         if (!task) {
-            throw new NotFoundException(`Team with not found.`);
+            throw new NotFoundException(`task not found.`);
         }
 
         await this.prismaService.task.update({

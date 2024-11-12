@@ -26,7 +26,7 @@ export class TaskController {
     @Put(':id')
     async updateTask(@Param('id') id: string, @Body() taskDto: TaskDto, @Req() req) {
         const userId = req.user.id;
-        return await this.taskService.updateTask(taskDto, userId); 
+        return await this.taskService.updateTask(taskDto, id); 
     }     
 
     // Method to get all tasks
